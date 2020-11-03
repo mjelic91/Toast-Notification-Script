@@ -511,8 +511,8 @@ function Get-CMUpdate() {
                 1 { $EvaluationState = 'Available' }
                 2 { $EvaluationState = 'Submitted' }
                 7 { $EvaluationState = 'Installing' }
-                8 { $EvaluationStatet = 'Reboot' }
-                9 { $EvaluationState = 'Reboot' }
+                8 { $EvaluationState = 'PendingSoftReboot' }
+                9 { $EvaluationState = 'PendingHardReboot' }
                 13 { $EvaluationState = 'Error' }
             }
             # If the evaluation of the update is in a desired state, write the details to output
