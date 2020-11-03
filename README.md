@@ -9,8 +9,8 @@ Blog posts, documentation as well as if any questions, please use: https://www.i
 Kudos to Martin Bengtsson for creating this great script!
 
 ## What's New
- - 2.1.0 - Added three new features!
-   - Added ToastTag ($ToastTag)
+- 2.1.0 - Added three new features!
+  - Added ToastTag ($ToastTag)
     - will group triggered notifications so there won't be multiple same notifications in the Windows 10 Notification Center
     - type: string
   - Added ToastTagGroup ($ToastTagGroup)
