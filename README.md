@@ -9,16 +9,17 @@ Blog posts, documentation as well as if any questions, please use: https://www.i
 Kudos to Martin Bengtsson for creating this great script!
 
 ## What's New
- - 2.1.0 - Added ToastTag ($ToastTag)
-           - will group triggered notifications so there won't be multiple same notifications in the Windows 10 Notification Center
-           - type: string
-           Added ToastTagGroup ($ToastTagGroup)
-           - will group triggered notifications so there won't be multiple same notifications in the Windows 10 Notification Center
-           - type: string
-           Added ToastExpirationInMin ($ToastExpirationInMin)
-           - the notification will desappear after those minutes
-           - default value is 1440 minutes (1 day)
-           - type: integer
+ - 2.1.0 - Added three new features!
+   - Added ToastTag ($ToastTag)
+    - will group triggered notifications so there won't be multiple same notifications in the Windows 10 Notification Center
+    - type: string
+  - Added ToastTagGroup ($ToastTagGroup)
+    - will group triggered notifications so there won't be multiple same notifications in the Windows 10 Notification Center
+    - type: string
+  - Added ToastExpirationInMin ($ToastExpirationInMin)
+    - the notification will desappear after those minutes
+    - default value is 1440 minutes (1 day)
+    - type: integer
  - 2.0.2 - Fixed an error in the custom protocols
    - The path to the custom scripts was incomplete
 - 2.0.1 - Updated custom action scripts!
