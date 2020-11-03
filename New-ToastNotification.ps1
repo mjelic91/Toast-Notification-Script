@@ -111,7 +111,18 @@
 
     2.0.2 -   Fixed an error in the custom protocols
                 - The path to the custom scripts was incomplete  
-              
+    
+    2.1.0 -   By mjelic91:
+              Added ToastTag ($ToastTag)
+                - will group triggered notifications so there won't be multiple same notifications in the Windows 10 Notification Center
+                - type: string
+              Added ToastTagGroup ($ToastTagGroup)
+                - will group triggered notifications so there won't be multiple same notifications in the Windows 10 Notification Center
+                - type: string
+              Added ToastExpirationInMin ($ToastExpirationInMin)
+                - the notification will desappear after those minutes
+                - default value is 1440 minutes (1 day)
+                - type: integer
 
 .LINK
     https://www.imab.dk/windows-10-toast-notification-script/
@@ -120,7 +131,13 @@
 [CmdletBinding()]
 param(
     [Parameter(HelpMessage='Path to XML Configuration File')]
-    [string]$Config
+    [string]$Config,
+    [Parameter(Mandatory = $false)]
+    [String] $ToastTag,
+    [Parameter(Mandatory = $false)]
+    [String] $ToastTagGroup,
+    [Parameter(Mandatory = $false)]
+    [Int] $ToastExpirationInMin="1440"
 )
 
 ######### FUNCTIONS #########
@@ -687,9 +704,14 @@ function Display-ToastNotification() {
     # Load the notification into the required format
     $ToastXml = New-Object -TypeName Windows.Data.Xml.Dom.XmlDocument
     $ToastXml.LoadXml($Toast.OuterXml)
+    $ToastSHOW = New-Object Windows.UI.Notifications.ToastNotification $ToastXml
+    $ToastSHOW.Tag = $ToastTag
+    $ToastSHOW.Group = $ToastTagGroup
+    $ToastSHOW.ExpirationTime = [DateTimeOffset]::Now.AddMinutes($ToastExpirationInMin)
+
     # Display the toast notification
     try {
-        [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier($App).Show($ToastXml)
+        [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier($App).Show($ToastSHOW)
         Write-Log -Message "All good. Toast notification was displayed"
         # Using Write-Output for sending status to IME log when used with Endpoint Analytics in Intune
         Write-Output "All good. Toast notification was displayed"
