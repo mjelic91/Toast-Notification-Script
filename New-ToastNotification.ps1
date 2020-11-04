@@ -705,9 +705,15 @@ function Display-ToastNotification() {
     $ToastXml = New-Object -TypeName Windows.Data.Xml.Dom.XmlDocument
     $ToastXml.LoadXml($Toast.OuterXml)
     $ToastSHOW = New-Object Windows.UI.Notifications.ToastNotification $ToastXml
-    $ToastSHOW.Tag = $ToastTag
-    $ToastSHOW.Group = $ToastTagGroup
-    $ToastSHOW.ExpirationTime = [DateTimeOffset]::Now.AddMinutes($ToastExpirationInMin)
+    if (-not([string]::IsNullOrWhiteSpace($ToastTag))){
+        $ToastSHOW.Tag = $ToastTag
+    }
+    if (-not([string]::IsNullOrWhiteSpace($ToastTagGroup))){
+        $ToastSHOW.Group = $ToastTagGroup
+    }
+    if (-not([string]::IsNullOrWhiteSpace($ToastExpirationInMin))){
+        $ToastSHOW.ExpirationTime = [DateTimeOffset]::Now.AddMinutes($ToastExpirationInMin)
+    }
 
     # Display the toast notification
     try {
